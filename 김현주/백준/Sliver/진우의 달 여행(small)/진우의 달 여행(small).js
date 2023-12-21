@@ -32,16 +32,12 @@ function main() {
                 const prevC = c+dc;
                 //유효범위 체크
                 if(prevR < 0 || prevC < 0 || prevR>= N || prevC >= M) {
-                    //만약 유효 범위 바깥이라면 INF넣기
-                    dp[r][c][i] = Infinity;
                     return;
                 }
                 //우주선은 전에 움직인 방향으로 움직일 수 없다.
                 dp[r][c][i] = map[r][c] + Math.min(dp[prevR][prevC][(i+1)%3], dp[prevR][prevC][(i+2)%3]);
             })
-            
-        }
-        
+        }       
     }
     //console.log(dp)
     console.log(Math.min(...dp[N-1].flat()))
